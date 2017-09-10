@@ -20,6 +20,7 @@ darknet
 .DS_Store*
 ehthumbs.db
 Icon?
+__pycache__
 Thumbs.db
 *.swp
 
