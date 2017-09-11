@@ -26,3 +26,4 @@ Thumbs.db
 
 # dataset
 VOCdevkit
+*.h5
