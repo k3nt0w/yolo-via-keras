@@ -8,7 +8,7 @@ import numpy as np
 import os
 
 from utils import *
-from model import yolo
+from model import yolo, vgg_yolo
 from loss import yolo_loss
 
 
@@ -24,7 +24,8 @@ COLORS = [(43,206,72),(255,204,153),(128,128,128),(148,255,181),(143,124,0),
 ann_dir = 'VOCdevkit/VOC2012/Annotations/'
 img_dir = 'VOCdevkit/VOC2012/JPEGImages/'
 
-model = yolo()
+#model = yolo()
+model = vgg_yolo()
 
 # Randomize weights of the last layer
 layer = model.layers[-3] # the last convolutional layer
@@ -49,6 +50,5 @@ model.compile(loss=yolo_loss, optimizer=sgd)
 model.fit_generator(data_gen(all_img, 8),
                     int(len(all_img)/8),
                     epochs = 100,
-                    verbose = 2,
                     callbacks = [early_stop, checkpoint, tensorboard],
                     max_q_size = 3)
